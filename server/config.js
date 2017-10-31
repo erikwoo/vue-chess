@@ -12,7 +12,7 @@ var config = {
     },
     porthttp: process.env.PORT || 80,
     multicore: false,
-    https: true,
+    https: false,
     debug: false
 }
 module.exports = config;
