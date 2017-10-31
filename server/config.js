@@ -10,7 +10,7 @@ var config = {
         },
         uri: process.env.MONGO_URL || 'mongodb://127.0.0.1/vuegustchess'
     },
-    porthttp: process.env.PORT || 3311,
+    porthttp: process.env.PORT || 80,
     multicore: false,
     https: true,
     debug: false

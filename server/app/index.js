@@ -14,6 +14,8 @@
 	http = require("http"),
 	https = require('https');
 	let io = socket_io();
+	var AWSXRay = require('aws-xray-sdk');
+	app.use(AWSXRay.express.openSegment('qcloudTest'));
 	let
 		// Local ip address that we're trying to calculate
 		address
@@ -78,8 +80,9 @@ app.use(express.static(__dirname + '/../public', {maxAge: oneYear}));
 app.set('ipaddr', address);
 app.set('port', config.porthttp);
 require('../routers')(app, express, io);
-var server = https.createServer(options,app);
+app.use(AWSXRay.express.closeSegment());
 
+var server = https.createServer(options,app);
 if (config.multicore){
 // use node socket clouster
 var redis = require('socket.io-redis');
